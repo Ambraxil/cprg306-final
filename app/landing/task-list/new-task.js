@@ -1,87 +1,77 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
-function NewTask({ onAddTask, onDeleteTask }) {
-  const [title, setTitle] = useState('');
-  const [startTime, setStartTime] = useState('');
-  const [endTime, setEndTime] = useState('');
+const NewTask = ({ onAddTask }) => {
+  const [title, setTitle] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
+  const [details, setDetails] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!title.trim()) return;
 
-    const task = {
-      id: Math.random().toString(36).substring(2, 9),
-      title,
-      startTime,
-      endTime,
+    const newTask = {
+      title: title.trim(),
+      startTime: startTime || null,
+      endTime: endTime || null,
+      details: details || "",
       completed: false,
     };
 
-    onAddTask(task);
-
-    // Reset form
-    setTitle('');
-    setStartTime('');
-    setEndTime('');
+    onAddTask(newTask); // Firestore ID will be added in page.js
+    // Clear form
+    setTitle("");
+    setStartTime("");
+    setEndTime("");
+    setDetails("");
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-4 bg-white mb-6">
-      {/* Title */}
-      <div className="mb-4 text-black">
-        <input
-          type="text"
-          placeholder="Task Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          className="w-full p-2 border rounded"
-          required
-        />
-      </div>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-2 mb-4 p-2 border rounded bg-white shadow">
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Task title"
+        className="p-2 border rounded w-full"
+        required
+      />
 
-      {/* Start Time */}
-      <div className="mb-4 text-black">
-        <label className="block mb-1">Start Time</label>
+      <div className="flex gap-2">
         <input
           type="time"
           value={startTime}
           onChange={(e) => setStartTime(e.target.value)}
-          className="w-full p-2 border rounded"
+          className="p-2 border rounded flex-1"
+          placeholder="Start Time"
         />
-      </div>
-
-      {/* End Time */}
-      <div className="mb-4 text-black">
-        <label className="block mb-1">End Time</label>
         <input
           type="time"
           value={endTime}
           onChange={(e) => setEndTime(e.target.value)}
-          className="w-full p-2 border rounded"
+          className="p-2 border rounded flex-1"
+          placeholder="End Time"
         />
       </div>
 
-      {/* Add Task Button */}
+      <textarea
+        value={details}
+        onChange={(e) => setDetails(e.target.value)}
+        placeholder="Task details"
+        className="p-2 border rounded w-full"
+        rows={3}
+      />
+
       <button
         type="submit"
-        className="w-full py-2 px-4 bg-blue-500 text-white font-semibold rounded hover:bg-blue-700"
+        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 mt-2"
       >
         Add Task
       </button>
-
-      {/* Delete ALL Tasks Button — optional */}
-      {onDeleteTask && (
-        <button
-          type="button"
-          onClick={onDeleteTask}
-          className="w-full mt-3 py-2 px-4 bg-red-500 text-white font-semibold rounded hover:bg-red-700"
-        >
-          Delete Selected Task
-        </button>
-      )}
     </form>
   );
-}
+};
 
 export default NewTask;

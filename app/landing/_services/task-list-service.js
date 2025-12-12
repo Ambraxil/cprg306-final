@@ -6,38 +6,56 @@ import {
   updateDoc,
   deleteDoc,
   doc,
-  query
+  query,
 } from "firebase/firestore";
 
-// READ
+// READ tasks for a user
 export async function getTasks(userId) {
-  const ref = collection(db, "users", userId, "tasks");
-  const q = query(ref);
-  const snap = await getDocs(q);
+  try {
+    const ref = collection(db, "users", userId, "tasks");
+    const q = query(ref);
+    const snap = await getDocs(q);
 
-  const tasks = [];
-  snap.forEach((docSnapshot) => {
-    tasks.push({ id: docSnapshot.id, ...docSnapshot.data() });
-  });
+    const tasks = [];
+    snap.forEach((docSnapshot) => {
+      tasks.push({ id: docSnapshot.id, ...docSnapshot.data() }); // Firestore doc ID
+    });
 
-  return tasks;
+    return tasks;
+  } catch (error) {
+    console.error("Failed to get tasks:", error);
+    return [];
+  }
 }
 
-// CREATE
+// CREATE new task
 export async function addTask(userId, task) {
-  const ref = collection(db, "users", userId, "tasks");
-  const docRef = await addDoc(ref, task);
-  return docRef.id;
+  try {
+    const ref = collection(db, "users", userId, "tasks");
+    const docRef = await addDoc(ref, task);
+    return docRef.id; // Firestore document ID
+  } catch (error) {
+    console.error("Failed to add task:", error);
+    return null;
+  }
 }
 
-// UPDATE
+// UPDATE task fields (title, details, completed, times, etc.)
 export async function updateTask(userId, taskId, updates) {
-  const ref = doc(db, "users", userId, "tasks", taskId);
-  await updateDoc(ref, updates);
+  try {
+    const ref = doc(db, "users", userId, "tasks", taskId);
+    await updateDoc(ref, updates);
+  } catch (error) {
+    console.error(`Failed to update task ${taskId}:`, error);
+  }
 }
 
-// DELETE
+// DELETE task
 export async function deleteTask(userId, taskId) {
-  const ref = doc(db, "users", userId, "tasks", taskId);
-  await deleteDoc(ref);
+  try {
+    const ref = doc(db, "users", userId, "tasks", taskId);
+    await deleteDoc(ref);
+  } catch (error) {
+    console.error(`Failed to delete task ${taskId}:`, error);
+  }
 }

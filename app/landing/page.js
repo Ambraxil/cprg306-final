@@ -15,28 +15,40 @@ export default function LandingPage() {
   };
 
   return (
-    <main style={{ padding: "2rem", textAlign: "center" }}>
+    <main className="min-h-screen bg-gray-300 p-6 text-center text-blue-900">
+      <header className="w-full text-left pb-4 mb-6 border-b-4 border-blue-900">
+        <h1 className="text-3xl font-bold text-left">Swift List</h1>
+      </header>
+
       {!user && (
         <>
-          <h1>Welcome to the Landing Page</h1>
-          <p>Please sign in to continue.</p>
+          <h2 className="text-2xl font-semibold mb-2">Welcome to the Landing Page</h2>
+          <p className="mb-4">Please sign in to continue.</p>
 
-          <button onClick={handleSignIn}>Sign in with GitHub</button>
+          <button
+            onClick={handleSignIn}
+            className="px-4 py-2 border-2 border-black rounded-xl hover:bg-gray-100"
+          >
+            Sign in with GitHub
+          </button>
         </>
       )}
 
       {user && (
         <>
-          <h1>Welcome, {user.displayName}</h1>
-          <p>Your email: {user.email}</p>
-
+          <h2 className="text-2xl font-semibold mb-2">Welcome, {user.email}!{user.displayName}</h2>
           <Link href="/landing/task-list">
-            <button style={{ marginTop: "1rem" }}>Go to Task List</button>
+            <button className="px-4 py-2 border-2 border-black rounded-xl hover:bg-gray-100 mt-4">
+              Go to Task List
+            </button>
           </Link>
 
           <br />
 
-          <button style={{ marginTop: "1rem" }} onClick={handleSignOut}>
+          <button
+            onClick={handleSignOut}
+            className="px-4 py-2 border-2 border-black rounded-xl hover:bg-gray-100 mt-4"
+          >
             Sign Out
           </button>
         </>
