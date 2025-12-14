@@ -32,21 +32,9 @@ const Task = ({
                 e.stopPropagation();
                 onToggleComplete(id, !completed);
               }}
-              className="px-2 py-1 bg-green-600 text-white rounded hover:bg-green-700 flex-shrink-0"
+              className="px-2 py-1 bg-green-600 text-white rounded hover:cursor-pointer hover:bg-green-700 flex-shrink-0"
             >
               {completed ? "Undo" : "Done"}
-            </button>
-          )}
-          {onExport && (
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                onExport();
-              }}
-              className="ml-2 px-2 py-1 bg-yellow-600 text-white rounded hover:bg-yellow-700 flex-shrink-0"
-            >
-              Export
             </button>
           )}
           {onDelete && (
@@ -54,9 +42,9 @@ const Task = ({
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
-                onDelete();
+                onDelete(id);
               }}
-              className="ml-2 px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700 flex-shrink-0"
+              className="ml-2 px-2 py-1 bg-red-600 text-white rounded hover:cursor-pointer hover:bg-red-700 flex-shrink-0"
             >
               Delete
             </button>

@@ -4,18 +4,8 @@ import Task from "./task";
 import { useState } from "react";
 import { deleteTask } from "../_services/task-list-service";
 
-const TaskList = ({ user, tasks, setTasks, onTaskSelect, onToggleComplete }) => {
+const TaskList = ({ user, tasks, setTasks, onTaskSelect, onToggleComplete, onDelete }) => {
   const [sortBy, setSortBy] = useState("");
-
-  const handleDeleteTask = async (taskId) => {
-    if (!user) return;
-    try {
-      await deleteTask(user.uid, taskId);
-      setTasks((prev) => prev.filter((task) => task.id !== taskId));
-    } catch (error) {
-      console.error("Failed to delete task:", error);
-    }
-  };
 
   const moveTaskUp = (index) => {
     if (index === 0) return;
@@ -49,29 +39,29 @@ const TaskList = ({ user, tasks, setTasks, onTaskSelect, onToggleComplete }) => 
     <div className="max-w-xl mx-auto mt-6">
       <ul>
         {displayedTasks.map((task, index) => (
-          <li key={task.id} className="flex items-start gap-4">
+          <li key={task.id} className="flex gap-4 items-center"> 
             <Task
-              id={task.id} // always Firestore document ID
+              id={task.id}
               title={task.title}
               startTime={task.startTime}
               endTime={task.endTime}
               completed={task.completed}
               onSelect={() => onTaskSelect(task)}
               onToggleComplete={() => onToggleComplete(task.id, !task.completed)}
-              onDelete={() => handleDeleteTask(task.id)}
+              onDelete={() => onDelete(task.id)}
               onExport={() => console.log("Export", task)}
             />
 
-            <div className="flex flex-col space-y-1 mt-2">
+            <div className="flex flex-col space-y-1">
               <button
                 onClick={() => moveTaskUp(index)}
-                className="px-2 py-1 bg-gray-700 text-white rounded hover:bg-gray-600"
+                className="px-2 py-1 bg-gray-700 text-white rounded hover:cursor-pointer hover:bg-gray-600"
               >
                 ↑
               </button>
               <button
                 onClick={() => moveTaskDown(index)}
-                className="px-2 py-1 bg-gray-700 text-white rounded hover:bg-gray-600"
+                className="px-2 py-1 bg-gray-700 text-white rounded hover:cursor-pointer hover:bg-gray-600"
               >
                 ↓
               </button>
@@ -85,7 +75,7 @@ const TaskList = ({ user, tasks, setTasks, onTaskSelect, onToggleComplete }) => 
           <button
             key={key}
             onClick={() => setSortBy(key)}
-            className={`px-4 py-2 rounded ${
+            className={`px-4 py-2 rounded hover:cursor-pointer ${
               sortBy === key ? "bg-blue-500 text-white" : "bg-white text-black"
             }`}
           >
@@ -96,7 +86,7 @@ const TaskList = ({ user, tasks, setTasks, onTaskSelect, onToggleComplete }) => 
         {sortBy && (
           <button
             onClick={() => setSortBy("")}
-            className="px-4 py-2 rounded bg-red-500 text-white"
+            className="px-4 py-2 rounded bg-red-500 text-white hover:cursor-pointer"
           >
             Clear Sorting
           </button>

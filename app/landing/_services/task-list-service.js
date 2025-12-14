@@ -10,9 +10,9 @@ import {
 } from "firebase/firestore";
 
 // READ tasks for a user
-export async function getTasks(userId) {
+export async function getTasks(userId, listId) {
   try {
-    const ref = collection(db, "users", userId, "tasks");
+    const ref = collection(db, "users", userId, "lists", listId, "tasks");
     const q = query(ref);
     const snap = await getDocs(q);
 
@@ -29,9 +29,9 @@ export async function getTasks(userId) {
 }
 
 // CREATE new task
-export async function addTask(userId, task) {
+export async function addTask(userId, listId, task) {
   try {
-    const ref = collection(db, "users", userId, "tasks");
+    const ref = collection(db, "users", userId, "lists", listId, "tasks");
     const docRef = await addDoc(ref, task);
     return docRef.id; // Firestore document ID
   } catch (error) {
@@ -41,9 +41,9 @@ export async function addTask(userId, task) {
 }
 
 // UPDATE task fields (title, details, completed, times, etc.)
-export async function updateTask(userId, taskId, updates) {
+export async function updateTask(userId, listId, taskId, updates) {
   try {
-    const ref = doc(db, "users", userId, "tasks", taskId);
+    const ref = doc(db, "users", userId, "lists", listId, "tasks", taskId);
     await updateDoc(ref, updates);
   } catch (error) {
     console.error(`Failed to update task ${taskId}:`, error);
@@ -51,9 +51,9 @@ export async function updateTask(userId, taskId, updates) {
 }
 
 // DELETE task
-export async function deleteTask(userId, taskId) {
+export async function deleteTask(userId, listId, taskId) {
   try {
-    const ref = doc(db, "users", userId, "tasks", taskId);
+    const ref = doc(db, "users", userId, "lists", listId, "tasks", taskId);
     await deleteDoc(ref);
   } catch (error) {
     console.error(`Failed to delete task ${taskId}:`, error);
