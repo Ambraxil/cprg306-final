@@ -4,18 +4,18 @@ import Task from "./task";
 import { useState } from "react";
 import { deleteTask } from "../_services/task-list-service";
 
-const TaskList = ({ user, tasks, setTasks, onTaskSelect, onToggleComplete }) => {
+const TaskList = ({ user, tasks, setTasks, onTaskSelect, onToggleComplete, onDelete }) => {
   const [sortBy, setSortBy] = useState("");
 
-  const handleDeleteTask = async (taskId) => {
-    if (!user) return;
-    try {
-      await deleteTask(user.uid, taskId);
-      setTasks((prev) => prev.filter((task) => task.id !== taskId));
-    } catch (error) {
-      console.error("Failed to delete task:", error);
-    }
-  };
+  // const handleDeleteTask = async (taskId) => {
+  //   if (!user) return;
+  //   try {
+  //     await deleteTask(user.uid, taskId);
+  //     setTasks((prev) => prev.filter((task) => task.id !== taskId));
+  //   } catch (error) {
+  //     console.error("Failed to delete task:", error);
+  //   }
+  // };
 
   const moveTaskUp = (index) => {
     if (index === 0) return;
@@ -58,7 +58,7 @@ const TaskList = ({ user, tasks, setTasks, onTaskSelect, onToggleComplete }) => 
               completed={task.completed}
               onSelect={() => onTaskSelect(task)}
               onToggleComplete={() => onToggleComplete(task.id, !task.completed)}
-              onDelete={() => handleDeleteTask(task.id)}
+              onDelete={() => onDelete(task.id)}
               onExport={() => console.log("Export", task)}
             />
 

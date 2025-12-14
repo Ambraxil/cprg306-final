@@ -14,7 +14,7 @@ export default function Page() {
 
   const loadTasks = async () => {
     if (!user) return;
-    const data = await getTasks(user.uid);
+    const data = await getTasks(user.uid, listId);
     setTasks(data); // Firestore IDs are used here
   };
 
@@ -24,7 +24,7 @@ export default function Page() {
 
   const handleAddTask = async (task) => {
     if (!user) return;
-    const docId = await addTask(user.uid, task); // Firestore document ID
+    const docId = await addTask(user.uid, listId, task); // Firestore document ID
     setTasks((prev) => [...prev, { ...task, id: docId }]);
   };
 
@@ -33,7 +33,7 @@ export default function Page() {
   const handleToggleComplete = async (taskId, newValue) => {
     if (!user) return;
     try {
-      await updateTask(user.uid, taskId, { completed: newValue });
+      await updateTask(user.uid, listId, taskId, { completed: newValue });
       setTasks((prev) =>
         prev.map((task) => (task.id === taskId ? { ...task, completed: newValue } : task))
       );

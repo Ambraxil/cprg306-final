@@ -4,7 +4,7 @@ import List from "./list";
 import { useState } from "react";
 import { deleteList } from "../_services/list-list-service";
 
-export default function ListList({user, lists, setLists, onSelectList, onDeleteList}) {
+export default function ListList({user, lists, setLists, onSelectList}) {
     const [sortBy, setSortBy] = useState("");
 
     const handleDeleteList = async (listId) => {
@@ -53,7 +53,7 @@ export default function ListList({user, lists, setLists, onSelectList, onDeleteL
                 id={list.id} // always Firestore document ID
                 title={list.title}
                 dateCreated={list.dateCreated}
-                onSelect={() => onSelectList(list)}
+                onSelect={() => onSelectList(list.id)}
                 onDelete={() => handleDeleteList(list.id)}
                 />
 

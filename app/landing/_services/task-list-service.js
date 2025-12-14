@@ -10,7 +10,7 @@ import {
 } from "firebase/firestore";
 
 // READ tasks for a user
-export async function getTasks(userId) {
+export async function getTasks(userId, listId) {
   try {
     const ref = collection(db, "users", userId, "lists", listId, "tasks");
     const q = query(ref);
@@ -43,7 +43,7 @@ export async function addTask(userId, listId, task) {
 // UPDATE task fields (title, details, completed, times, etc.)
 export async function updateTask(userId, listId, taskId, updates) {
   try {
-    const ref = doc(db, "users", userId, "list", listId, "tasks", taskId);
+    const ref = doc(db, "users", userId, "lists", listId, "tasks", taskId);
     await updateDoc(ref, updates);
   } catch (error) {
     console.error(`Failed to update task ${taskId}:`, error);

@@ -3,14 +3,14 @@
 import { useState } from "react";
 import { updateTask } from "../_services/task-list-service";
 
-const TaskDetailsEditor = ({ task, user, onUpdate, onUpdateList }) => {
+const TaskDetailsEditor = ({ task, list, user, onUpdate, onUpdateList }) => {
   const [editing, setEditing] = useState(false);
   const [details, setDetails] = useState(task.details || "");
 
   const handleSave = async () => {
     if (!user) return;
     try {
-      await updateTask(user.uid, task.id, { details });
+      await updateTask(user.uid, list, task.id, { details });
       const updatedTask = { ...task, details };
       onUpdate(updatedTask);
       onUpdateList(updatedTask);

@@ -54,7 +54,7 @@ const Task = ({
               type="button"
               onClick={(e) => {
                 e.stopPropagation();
-                onDelete();
+                onDelete(id);
               }}
               className="ml-2 px-2 py-1 bg-red-600 text-white rounded hover:bg-red-700 flex-shrink-0"
             >
