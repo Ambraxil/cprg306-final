@@ -62,7 +62,7 @@ const TaskList = ({ user, tasks, setTasks, onTaskSelect, onToggleComplete, onDel
               onExport={() => console.log("Export", task)}
             />
 
-            <div className="flex flex-col space-y-1 mt-2">
+            <div className="flex flex-col space-y-1">
               <button
                 onClick={() => moveTaskUp(index)}
                 className="px-2 py-1 bg-gray-700 text-white rounded hover:bg-gray-600"
