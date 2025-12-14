@@ -36,6 +36,7 @@ export default function ListPage() {
 
   const handleSelectList = (id) => {
     setSelectedList(id);
+    setSelectedTask(null);
   };
   const loadTasks = async () => {
     if (!user) return;
@@ -67,6 +68,9 @@ export default function ListPage() {
 
   const handleDeleteTask = async (taskId) => {
     if (!user) return;
+    if (taskId == selectedTask?.id) {
+      setSelectedTask(null);
+    }
     try {
       await deleteTask(user.uid, selectedList, taskId);
       setTasks((prev) => prev.filter((task) => task.id !== taskId));
@@ -154,7 +158,7 @@ if (selectedList != null) {
               <p className="mb-1">
                 <strong>Status:</strong> {selectedTask.completed ? "Completed" : "Pending"}
               </p>
-
+              {selectedTask &&
               <TaskDetailsEditor
                 task={selectedTask}
                 list={selectedList}
@@ -167,7 +171,7 @@ if (selectedList != null) {
                     )
                   )
                 }
-              />
+              />}
             </div>
           ) : (
             <p className="text-blue-700 text-center mt-20">
