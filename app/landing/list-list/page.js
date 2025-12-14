@@ -100,7 +100,7 @@ export default function ListPage() {
         <h1 className="text-3xl font-bold">Swift List</h1>
         </header>
         <div className="flex flex-col md:flex-row gap-6">
-            <div className="md:w-1/3">
+            <div className="md:w-1/2">
                 <NewList onAddList={handleAddList} />
                 <ListList 
                   user={user} 
