@@ -20,8 +20,7 @@ const NewTask = ({ onAddTask }) => {
       completed: false,
     };
 
-    onAddTask(newTask); // Firestore ID will be added in page.js
-    // Clear form
+    onAddTask(newTask);
     setTitle("");
     setStartTime("");
     setEndTime("");

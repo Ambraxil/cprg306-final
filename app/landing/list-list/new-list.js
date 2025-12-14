@@ -26,7 +26,7 @@ export default function NewList({ onAddList }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-2 mb-4 p-2 border rounded bg-white shadow">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-2 mb-4 p-2 border rounded bg-white shadow justify-center max-w-xl mx-auto">
       <input
         type="text"
         value={title}

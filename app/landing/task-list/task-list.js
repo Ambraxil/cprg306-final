@@ -7,16 +7,6 @@ import { deleteTask } from "../_services/task-list-service";
 const TaskList = ({ user, tasks, setTasks, onTaskSelect, onToggleComplete, onDelete }) => {
   const [sortBy, setSortBy] = useState("");
 
-  // const handleDeleteTask = async (taskId) => {
-  //   if (!user) return;
-  //   try {
-  //     await deleteTask(user.uid, taskId);
-  //     setTasks((prev) => prev.filter((task) => task.id !== taskId));
-  //   } catch (error) {
-  //     console.error("Failed to delete task:", error);
-  //   }
-  // };
-
   const moveTaskUp = (index) => {
     if (index === 0) return;
     setTasks((prev) => {
@@ -51,7 +41,7 @@ const TaskList = ({ user, tasks, setTasks, onTaskSelect, onToggleComplete, onDel
         {displayedTasks.map((task, index) => (
           <li key={task.id} className="flex gap-4 items-center"> 
             <Task
-              id={task.id} // always Firestore document ID
+              id={task.id}
               title={task.title}
               startTime={task.startTime}
               endTime={task.endTime}

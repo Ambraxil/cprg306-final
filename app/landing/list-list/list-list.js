@@ -50,7 +50,7 @@ export default function ListList({user, lists, setLists, onSelectList}) {
             {displayedLists.map((list, index) => (
             <li key={list.id} className="flex items-start gap-4">
                 <List
-                id={list.id} // always Firestore document ID
+                id={list.id}
                 title={list.title}
                 dateCreated={list.dateCreated}
                 onSelect={() => onSelectList(list.id)}

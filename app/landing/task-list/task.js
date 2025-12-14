@@ -37,18 +37,6 @@ const Task = ({
               {completed ? "Undo" : "Done"}
             </button>
           )}
-          {/* {onExport && (
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                onExport();
-              }}
-              className="ml-2 px-2 py-1 bg-yellow-600 text-white rounded hover:cursor-pointer hover:bg-yellow-700 flex-shrink-0"
-            >
-              Export
-            </button>
-          )} */}
           {onDelete && (
             <button
               type="button"
