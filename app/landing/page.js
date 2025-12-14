@@ -37,9 +37,9 @@ export default function LandingPage() {
       {user && (
         <>
           <h2 className="text-2xl font-semibold mb-2">Welcome, {user.email}!{user.displayName}</h2>
-          <Link href="/landing/task-list">
+          <Link href="/landing/list-list">
             <button className="px-4 py-2 border-2 border-black rounded-xl hover:bg-gray-100 mt-4">
-              Go to Task List
+              Go to your Lists
             </button>
           </Link>
 
