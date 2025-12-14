@@ -37,7 +37,7 @@ const Task = ({
               {completed ? "Undo" : "Done"}
             </button>
           )}
-          {onExport && (
+          {/* {onExport && (
             <button
               type="button"
               onClick={(e) => {
@@ -48,7 +48,7 @@ const Task = ({
             >
               Export
             </button>
-          )}
+          )} */}
           {onDelete && (
             <button
               type="button"

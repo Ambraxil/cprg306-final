@@ -78,6 +78,22 @@ export default function ListPage() {
       console.error("Failed to delete task:", error);
     }
   };
+  
+    const downloadTxtFile = () => {
+      let inputText = tasks.map(task => 
+        `Title: ${task.title}, Start: ${task.startTime || "Not set"}, End: ${task.endTime || "Not set"}, Completed: ${task.completed ? "Yes" : "No"}`
+      ).join('\n');
+      const fileData = inputText; 
+      const blob = new Blob([fileData], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'ListDownload.txt';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    };
 
     if (!user) {
     return (
@@ -131,6 +147,12 @@ if (selectedList != null) {
             className="mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:cursor-pointer hover:bg-blue-700"
           >
             ← Back to Lists
+          </button>
+          <button 
+            type="button"
+            onClick={downloadTxtFile}
+            className="mb-4 ml-2 px-4 py-2 bg-yellow-600 text-white rounded hover:cursor-pointer hover:bg-yellow-700">
+            Download Text File
           </button>
         </div>
         <div className="flex-1">
