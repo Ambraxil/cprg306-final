@@ -27,7 +27,7 @@ export default function LandingPage() {
 
           <button
             onClick={handleSignIn}
-            className="px-4 py-2 border-2 border-black rounded-xl hover:bg-gray-100"
+            className="px-4 py-2 border-2 border-black rounded-xl hover:cursor-pointer hover:bg-gray-100"
           >
             Sign in with GitHub
           </button>
@@ -38,7 +38,7 @@ export default function LandingPage() {
         <>
           <h2 className="text-2xl font-semibold mb-2">Welcome, {user.email}!{user.displayName}</h2>
           <Link href="/landing/list-list">
-            <button className="px-4 py-2 border-2 border-black rounded-xl hover:bg-gray-100 mt-4">
+            <button className="px-4 py-2 border-2 border-black rounded-xl hover:cursor-pointer hover:bg-gray-100 mt-4">
               Go to your Lists
             </button>
           </Link>
@@ -47,7 +47,7 @@ export default function LandingPage() {
 
           <button
             onClick={handleSignOut}
-            className="px-4 py-2 border-2 border-black rounded-xl hover:bg-gray-100 mt-4"
+            className="px-4 py-2 border-2 border-black rounded-xl hover:cursor-pointer hover:bg-gray-100 mt-4"
           >
             Sign Out
           </button>

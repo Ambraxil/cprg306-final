@@ -128,7 +128,7 @@ if (selectedList != null) {
           <button
             type="button"
             onClick={() => setSelectedList(null)}
-            className="mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+            className="mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:cursor-pointer hover:bg-blue-700"
           >
             ← Back to Lists
           </button>

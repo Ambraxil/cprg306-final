@@ -49,7 +49,7 @@ const TaskList = ({ user, tasks, setTasks, onTaskSelect, onToggleComplete, onDel
     <div className="max-w-xl mx-auto mt-6">
       <ul>
         {displayedTasks.map((task, index) => (
-          <li key={task.id} className="flex items-start gap-4">
+          <li key={task.id} className="flex gap-4 items-center"> 
             <Task
               id={task.id} // always Firestore document ID
               title={task.title}
@@ -65,13 +65,13 @@ const TaskList = ({ user, tasks, setTasks, onTaskSelect, onToggleComplete, onDel
             <div className="flex flex-col space-y-1">
               <button
                 onClick={() => moveTaskUp(index)}
-                className="px-2 py-1 bg-gray-700 text-white rounded hover:bg-gray-600"
+                className="px-2 py-1 bg-gray-700 text-white rounded hover:cursor-pointer hover:bg-gray-600"
               >
                 ↑
               </button>
               <button
                 onClick={() => moveTaskDown(index)}
-                className="px-2 py-1 bg-gray-700 text-white rounded hover:bg-gray-600"
+                className="px-2 py-1 bg-gray-700 text-white rounded hover:cursor-pointer hover:bg-gray-600"
               >
                 ↓
               </button>
@@ -85,7 +85,7 @@ const TaskList = ({ user, tasks, setTasks, onTaskSelect, onToggleComplete, onDel
           <button
             key={key}
             onClick={() => setSortBy(key)}
-            className={`px-4 py-2 rounded ${
+            className={`px-4 py-2 rounded hover:cursor-pointer ${
               sortBy === key ? "bg-blue-500 text-white" : "bg-white text-black"
             }`}
           >
@@ -96,7 +96,7 @@ const TaskList = ({ user, tasks, setTasks, onTaskSelect, onToggleComplete, onDel
         {sortBy && (
           <button
             onClick={() => setSortBy("")}
-            className="px-4 py-2 rounded bg-red-500 text-white"
+            className="px-4 py-2 rounded bg-red-500 text-white hover:cursor-pointer"
           >
             Clear Sorting
           </button>

@@ -32,7 +32,7 @@ const TaskDetailsEditor = ({ task, list, user, onUpdate, onUpdateList }) => {
           <div className="flex gap-2">
             <button
               onClick={handleSave}
-              className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
+              className="px-3 py-1 bg-blue-500 text-white rounded hover:cursor-pointer hover:bg-blue-600"
             >
               Save
             </button>
@@ -41,7 +41,7 @@ const TaskDetailsEditor = ({ task, list, user, onUpdate, onUpdateList }) => {
                 setEditing(false);
                 setDetails(task.details || "");
               }}
-              className="px-3 py-1 bg-gray-500 text-white rounded hover:bg-gray-600"
+              className="px-3 py-1 bg-gray-500 text-white rounded hover:cursor-pointer hover:bg-gray-600"
             >
               Cancel
             </button>
@@ -52,7 +52,7 @@ const TaskDetailsEditor = ({ task, list, user, onUpdate, onUpdateList }) => {
           <p className="text-gray-700">{task.details || "No details provided."}</p>
           <button
             onClick={() => setEditing(true)}
-            className="ml-2 px-3 py-1 bg-indigo-500 text-white rounded hover:bg-indigo-600"
+            className="ml-2 px-3 py-1 bg-indigo-500 text-white rounded hover:cursor-pointer hover:bg-indigo-600"
           >
             Edit
           </button>

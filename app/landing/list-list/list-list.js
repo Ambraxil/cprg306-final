@@ -61,14 +61,14 @@ export default function ListList({user, lists, setLists, onSelectList}) {
                 <button
                     type="button"
                     onClick={() => moveListUp(index)}
-                    className="px-2 py-1 bg-gray-400 text-white rounded hover:bg-gray-500"
+                    className="px-2 py-1 bg-gray-400 text-white rounded hover:cursor-pointer hover:bg-gray-500"
                 >
                     ↑
                 </button>
                 <button
                     type="button"
                     onClick={() => moveListDown(index)}
-                    className="px-2 py-1 bg-gray-400 text-white rounded hover:bg-gray-500"
+                    className="px-2 py-1 bg-gray-400 text-white rounded hover:cursor-pointer hover:bg-gray-500"
                 >
                     ↓
                 </button>
@@ -82,7 +82,7 @@ export default function ListList({user, lists, setLists, onSelectList}) {
           <button
             key={key}
             onClick={() => setSortBy(key)}
-            className={`px-4 py-2 rounded ${
+            className={`px-4 py-2 rounded hover:cursor-pointer ${
               sortBy === key ? "bg-blue-500 text-white" : "bg-white text-black"
             }`}
           >
@@ -93,7 +93,7 @@ export default function ListList({user, lists, setLists, onSelectList}) {
         {sortBy && (
           <button
             onClick={() => setSortBy("")}
-            className="px-4 py-2 rounded bg-red-500 text-white"
+            className="px-4 py-2 rounded bg-red-500 text-white hover:cursor-pointer"
           >
             Clear Sorting
           </button>
